@@ -1,3 +1,5 @@
+"use strict";
+
 const posts = [
     {
         "id": 1,
@@ -66,3 +68,15 @@ const posts = [
 // 1. Formattare le date in formato italiano (gg/mm/aaaa)
 // 2. Gestire l'assenza dell'immagine profilo con un elemento di fallback che contiene le iniziali dell'utente (es. Luca Formicola > LF).
 // 3. Al click su un pulsante "Mi Piace" di un post, se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.
+
+// Milestone 1 - Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i post del nostro feed.
+// seleziono il container dei posts creando una variabile
+const postsContainer = document.querySelector('.posts-list');
+
+// creo un ciclo FOR per ciclare tutti gli OBJECTS dell'ARRAY
+for (let i = 0; i < posts.length; i++) {
+    const post = posts[i];
+    console.log(post);
+    const postItem = document.getElementById('template-post').content.cloneNode(true);
+    postsContainer.append(postItem);
+}

@@ -78,15 +78,20 @@ for (let i = 0; i < posts.length; i++) {
     const post = posts[i];
     console.log(post);
     const postItem = document.getElementById('template-post').content.cloneNode(true);
-    // stampo immagine profilo
+    // stampo immagine profilo (author.image)
     if( post.author.image) {
         postItem.querySelector('.profile-pic').setAttribute("src", post.author.image);
     } else {
         postItem.querySelector('.profile-pic').remove();
     }
-    // stampo nome autore
+    // stampo nome autore (author.name)
     postItem.querySelector('.post-meta__author').innerHTML = post.author.name;
+    // stampa contenuto post (content) anche se sono tutti uguali perchè in futuro potrebbero cambiare
+    postItem.querySelector('.post__text').innerHTML = post.content;
     // stampo immagine post (media)
     postItem.querySelector('.post__image img').setAttribute("src", post.media);
+    // stampo numero di like (likes)
+    postItem.querySelector('.js-likes-counter').innerHTML = post.likes;
+    // appendo tutti i post in HTML
     postsContainer.append(postItem);
 }

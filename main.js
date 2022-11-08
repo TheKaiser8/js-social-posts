@@ -78,5 +78,10 @@ for (let i = 0; i < posts.length; i++) {
     const post = posts[i];
     console.log(post);
     const postItem = document.getElementById('template-post').content.cloneNode(true);
+    if( post.author.image) {
+        postItem.querySelector('.profile-pic').setAttribute("src", post.author.image);
+    } else {
+        postItem.querySelector('.profile-pic').remove();
+    }
     postsContainer.append(postItem);
 }

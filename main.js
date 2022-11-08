@@ -78,11 +78,15 @@ for (let i = 0; i < posts.length; i++) {
     const post = posts[i];
     console.log(post);
     const postItem = document.getElementById('template-post').content.cloneNode(true);
+    // stampo immagine profilo
     if( post.author.image) {
         postItem.querySelector('.profile-pic').setAttribute("src", post.author.image);
     } else {
         postItem.querySelector('.profile-pic').remove();
     }
+    // stampo nome autore
     postItem.querySelector('.post-meta__author').innerHTML = post.author.name;
+    // stampo immagine post (media)
+    postItem.querySelector('.post__image img').setAttribute("src", post.media);
     postsContainer.append(postItem);
 }

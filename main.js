@@ -83,5 +83,6 @@ for (let i = 0; i < posts.length; i++) {
     } else {
         postItem.querySelector('.profile-pic').remove();
     }
+    postItem.querySelector('.post-meta__author').innerHTML = post.author.name;
     postsContainer.append(postItem);
 }

@@ -81,28 +81,22 @@ for (let i = 0; i < posts.length; i++) {
     // stampo immagine profilo (author.image)
     if( post.author.image) {
         postItem.querySelector('.profile-pic').setAttribute("src", post.author.image);
+        postItem.querySelector('.profile-pic').setAttribute("alt", post.author.name);
     } else {
         postItem.querySelector('.profile-pic').remove();
     }
     // stampo nome autore (author.name)
     postItem.querySelector('.post-meta__author').innerHTML = post.author.name;
+    // stampo data post (created)
+    postItem.querySelector('.post-meta__time').innerHTML = post.created;
     // stampa contenuto post (content) anche se sono tutti uguali perchè in futuro potrebbero cambiare
     postItem.querySelector('.post__text').innerHTML = post.content;
     // stampo immagine post (media)
     postItem.querySelector('.post__image img').setAttribute("src", post.media);
+    // imposto pulsante "Mi piace"
+    postItem.querySelector('.js-like-button').setAttribute('data-postid', post.id);
     // stampo numero di like (likes)
     postItem.querySelector('.js-likes-counter').innerHTML = post.likes;
     // appendo tutti i post in HTML
     postsContainer.append(postItem);
 };
-
-// Milestone 2 - Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo.
-const likeButton = document.querySelectorAll('.js-like-button');
-console.log(likeButton);
-likeButton.addEventListener('click', function() {
-    if( !likeButton.classList.contains('like-button--liked') ) {
-        likeButton.classList.add('like-button--liked');
-    } else {
-        likeButton.classList.remove('like-button--liked');
-    }
-});

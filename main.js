@@ -69,6 +69,31 @@ const posts = [
 // 2. Gestire l'assenza dell'immagine profilo con un elemento di fallback che contiene le iniziali dell'utente (es. Luca Formicola > LF).
 // 3. Al click su un pulsante "Mi Piace" di un post, se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.
 
+const postsLiked = [];
+
+/*------------------
+    FUNCTIONS
+--------------------*/
+// Milestone 2 - Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo.
+function onClickLikeButton(event) {
+    // per eliminare il comportamento di default del re-indirizzamento al click del pulsante "Mi piace"
+    event.preventDefault();
+    // creo variabile per ricavare ID del post
+    const postID = this.getAttribute('data-postid');
+    console.log(postID);
+    // creo variabile dei like al post utilizzando l'ID del post su cui effettuo l'evento click
+    const postLikes = document.querySelector(`#like-counter-${postID}`);
+    if( !this.classList.contains('like-button--liked') ) {
+        this.classList.add('like-button--liked');
+        postLikes.innerHTML = Number(postLikes.innerHTML) + 1;
+        postsLiked.push(postID);
+    } else {
+        this.classList.remove('like-button--liked');
+        postLikes.innerHTML = Number(postLikes.innerHTML) - 1;
+    }
+    console.log(postsLiked);
+};
+
 // Milestone 1 - Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i post del nostro feed.
 // seleziono il container dei posts creando una variabile
 const postsContainer = document.querySelector('.posts-list');
@@ -94,9 +119,11 @@ for (let i = 0; i < posts.length; i++) {
     // stampo immagine post (media)
     postItem.querySelector('.post__image img').setAttribute("src", post.media);
     // imposto pulsante "Mi piace"
+    postItem.querySelector('.js-like-button').addEventListener('click', onClickLikeButton);
     postItem.querySelector('.js-like-button').setAttribute('data-postid', post.id);
     // stampo numero di like (likes)
     postItem.querySelector('.js-likes-counter').innerHTML = post.likes;
+    postItem.querySelector('.js-likes-counter').id = `like-counter-${post.id}`;
     // appendo tutti i post in HTML
     postsContainer.append(postItem);
 };

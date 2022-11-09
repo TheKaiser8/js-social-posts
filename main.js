@@ -94,4 +94,15 @@ for (let i = 0; i < posts.length; i++) {
     postItem.querySelector('.js-likes-counter').innerHTML = post.likes;
     // appendo tutti i post in HTML
     postsContainer.append(postItem);
-}
+};
+
+// Milestone 2 - Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo.
+const likeButton = document.querySelectorAll('.js-like-button');
+console.log(likeButton);
+likeButton.addEventListener('click', function() {
+    if( !likeButton.classList.contains('like-button--liked') ) {
+        likeButton.classList.add('like-button--liked');
+    } else {
+        likeButton.classList.remove('like-button--liked');
+    }
+});
